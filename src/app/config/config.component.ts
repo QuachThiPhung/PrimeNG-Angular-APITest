@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { Config } from './config';
+import { Config } from "./config";
 import { ConfigService } from './config.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ConfigService } from './config.service';
   styleUrls: ['./config.component.css'],
 })
 
-export class ConfigComponent {
+export class ConfigComponent implements OnInit {
   error: any;
   configs: Config[] = [];
   config: Config | undefined;
@@ -41,9 +41,22 @@ export class ConfigComponent {
   //     });
   // }
 
-  showConfig() {
-    this.configService.getConfig().subscribe((data: Config) => this.config = { ...data });
-          // clone the data object, using its known Config shape
-  }
+  ngOnInit(): void {
+    // this.configService.getConfig().subscribe((data: Config) => this.config = { ...data });
+    // clone the data object, using its known Config shape
+    // showConfig() {
+      this.configService.getConfig()
+        .subscribe((data: Config) => this.config = {
+          fullName: data.fullName,
+          address: data.address,
+          nationality: data.nationality,
+          identityNumber: data.identityNumber,
+          phoneNumber: data.phoneNumber,
+          email: data.email,
+          gender: data.gender,
+          dateOfBirth: data.dateOfBirth,
+        });
+    // };
 
+  }
 }
