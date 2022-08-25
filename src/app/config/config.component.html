@@ -1,5 +1,7 @@
     <tr *ngFor="let config of configs">
         <td> Id </td>
+        <td>{{config.fullName}}</td>
     </tr>
 
+    <p> In total there are {{configs ? configs.length :0}} config</p>
     <h1>hello</h1>

@@ -9,7 +9,7 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable()
 export class ConfigService {
 
-    configUrl = 'assets/config.json';
+    configUrl = 'http://103.229.41.59/api/services/app/Citizen/GetAllCitizen';
 
     
 
@@ -31,6 +31,6 @@ export class ConfigService {
     constructor(private http: HttpClient) { }
 
     getConfig(){
-        return this.http.get<any>('http://103.229.41.59/api/services/app/Citizen/GetAllCitizen');
+        return this.http.get<Config>(this.configUrl);
     }
 }
